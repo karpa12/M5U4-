@@ -53,13 +53,26 @@ BALL_IMG = transform.scale(image.load('images/Ball.png'), (20, 20))
 SCORE_BAR_LEFT = transform.scale(image.load('images/ScoreBar.png'), (350, 60))
 SCORE_BAR_RIGHT = transform.flip(transform.scale(image.load('images/ScoreBar.png'), (350, 60)), True, False)
 ball_motion_img = transform.scale(image.load('images/BallMotion.png'), (50, 35))
-
 # --- ЗВУКИ ---
+mixer.init()
+try:
+    mixer.music.load('sounds/menu.mp3')
+
+    WALL_HIT_SOUND = mixer.Sound('[lp;gklds;fjgkdfjho')
+    PLATFORM_HIT_SOUND
+    LOSE_SOUND
+
+    mixer.music.set_volume(0.1)
+
+except Exception as e:
+    print(f"Помилка: {e}")
 
 # --- ГРА ---
 game_over = False
 winner = None
 you_winner = None
+
+
 my_id, game_state, buffer, client = connect_to_server()
 Thread(target=receive, daemon=True).start()
 while True:
